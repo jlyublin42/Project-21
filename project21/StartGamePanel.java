@@ -1,16 +1,16 @@
 package project21;
 
 import java.awt.*;
-import javax.swing.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 public class StartGamePanel extends JPanel { //---------------------------------------------------------------
    
    private final int PANEL_WIDTH = 800;
    private final int PANEL_HEIGHT = 800;
-   private Color color = new Color(0x8c8c8c);
-   private ImageIcon project21 = new ImageIcon("project21.png");
-   private Font font = new Font("Arial", Font.BOLD, 18);
+   private final Color color = new Color(0x8c8c8c);
+   private final ImageIcon project21 = new ImageIcon("project21.png");
+   private final Font font = new Font("Arial", Font.BOLD, 18);
    private JRadioButton onePlayer;
    private JRadioButton twoPlayer;
    private JRadioButton threePlayer;
@@ -71,6 +71,13 @@ public class StartGamePanel extends JPanel { //---------------------------------
       bg.add(onePlayer);
       bg.add(twoPlayer);
       bg.add(threePlayer);
+
+      // Disable Two and Three player games
+      twoPlayer.setEnabled(false);
+      playerTwoName.setEditable(false);
+      threePlayer.setEnabled(false);
+      playerThreeName.setEditable(false);
+
       
       
       // Create the two combo boxes with the choices Human or AI
@@ -127,6 +134,19 @@ public class StartGamePanel extends JPanel { //---------------------------------
          } 
       });
       
+      playerOneName.addActionListener(new ActionListener() {
+         
+         public void actionPerformed(ActionEvent e) {
+        
+            int caretPosition = playerOneName.getCaretPosition();
+            String currentText = playerOneName.getText();
+            playerOneName.requestFocus();
+            playerOneName.setCaretPosition(caretPosition + currentText.length());
+            onePlayer.setSelected(true);
+                   
+         } 
+      });
+
       twoPlayer.addActionListener(new ActionListener() {
          
          public void actionPerformed(ActionEvent e) {
@@ -191,6 +211,7 @@ public class StartGamePanel extends JPanel { //---------------------------------
    }
    
    public String getPlayerOneName(){ //-----------------------------------------------------------------------
+      System.out.println(playerOneName.getText());
       return playerOneName.getText();
    }
    

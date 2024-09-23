@@ -2,8 +2,6 @@ package project21;
 
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
-import javax.swing.event.*;
 
 public class GameFrame extends JFrame { //--------------------------------------------------------------------
  
@@ -33,7 +31,7 @@ public class GameFrame extends JFrame { //--------------------------------------
       
       
       // Adjusts the screens(panels) that are in GameFrame 
-      startGamePanel.setBounds(400, 250, 800, 525);
+      startGamePanel.setBounds(400, 225, 800, 525);
       onePlayerGame.setBounds(0, 0, 1600, 1000);
       twoPlayerGame.setBounds(0, 0, 1600, 1000);
       threePlayerGame.setBounds(0, 0, 1600, 1000);

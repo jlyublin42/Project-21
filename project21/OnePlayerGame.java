@@ -10,7 +10,7 @@ public class OnePlayerGame extends JPanel { //----------------------------------
    private final int PANEL_HEIGHT = 1000;
    private final Color background = new Color(0x176121);
    private final ImageIcon project21 = new ImageIcon("project21sm.png");
-   private final ImageIcon cardBack = new ImageIcon("CardBacksm.png");
+   private final ImageIcon cardBack = new ImageIcon("CardBack.png");
    private final Font font = new Font("Arial", Font.BOLD, 20);
    JPanel infoPanel = new JPanel();
    JPanel playerCards;
@@ -19,6 +19,7 @@ public class OnePlayerGame extends JPanel { //----------------------------------
    JButton dealButton;
    JButton hitButton;
    JButton stayButton;
+   JLabel playerOneName;
    
    // Constructor
    public OnePlayerGame(GameFrame parent) { //--------------------------------------------------------------------------------
@@ -53,17 +54,18 @@ public class OnePlayerGame extends JPanel { //----------------------------------
 
 
       // playerOneName should be located underneath playerOne Cards
-      JLabel playerOneName = new JLabel("Name");
-      playerOneName.setBounds(1000, 0, 180, 20);
+      playerOneName = new JLabel();
+      playerOneName.setBounds(400, 860, 180, 20);
       playerOneName.setBackground(Color.lightGray);
       playerOneName.setForeground(Color.lightGray);
       playerOneName.setFont(font);
+      //playerOneName.setText("Lawrence");
       
 
       
 
-      String name;
-      name = parent.startGamePanel.getPlayerOneName();
+      //String name;
+      //name = parent.startGamePanel.getPlayerOneName();
 
 
       // Set up buttonPanel
@@ -113,16 +115,21 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       this.add(cardDeck);
       this.add(playerCards);
       this.add(dealerCards);
+      this.add(playerOneName);
       this.add(buttonPanel);
       this.add(infoPanel);
 
 
 
-      System.out.println(parent.startGamePanel.getPlayerOneName());
-      playerOneName.setText(name);
+      
+      
 
       
       
+   }
+
+   public void setPlayerOneName(String name){
+      playerOneName.setText(name);
    }
    
 } // End -----------------------------------------------------------------------------------------------------

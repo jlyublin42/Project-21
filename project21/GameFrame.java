@@ -53,7 +53,7 @@ public class GameFrame extends JFrame { //--------------------------------------
       startGamePanel.setVisible(false);
       
       if (panel == 1){
-         onePlayerGame.setVisible(true);
+         onePlayerGame.setVisible(true);  
       } else if (panel == 2){
          twoPlayerGame.setVisible(true);
       } else if (panel == 3){

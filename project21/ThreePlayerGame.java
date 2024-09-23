@@ -2,8 +2,6 @@ package project21;
 
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
-import javax.swing.event.*;
 
 public class ThreePlayerGame extends JPanel { //--------------------------------------------------------------
    
@@ -12,6 +10,9 @@ public class ThreePlayerGame extends JPanel { //--------------------------------
    private Color color = new Color(0x176121);
    private ImageIcon project21 = new ImageIcon("project21.png"); 
    private Font font = new Font("Arial", Font.BOLD, 18);
+   JLabel playerOneName;
+   JLabel playerTwoName;
+   JLabel playerThreeName;
    
    //Constructor
    public ThreePlayerGame(GameFrame parent) { //--------------------------------------------------------------
@@ -22,17 +23,17 @@ public class ThreePlayerGame extends JPanel { //--------------------------------
       this.setVisible(true);
       
       
-      JLabel playerOneName = new JLabel();
+      playerOneName = new JLabel();
       playerOneName.setBounds(200, 200, 180, 20);
       playerOneName.setBackground(Color.lightGray);
       playerOneName.setFont(font);
       
-      JLabel playerTwoName = new JLabel();
+      playerTwoName = new JLabel();
       playerTwoName.setBounds(200, 225, 180, 20);
       playerTwoName.setBackground(Color.lightGray);
       playerTwoName.setFont(font);
       
-      JLabel playerThreeName = new JLabel();
+      playerThreeName = new JLabel();
       playerThreeName.setBounds(200, 250, 180, 20);
       playerThreeName.setBackground(Color.lightGray);
       playerThreeName.setFont(font);
@@ -52,6 +53,19 @@ public class ThreePlayerGame extends JPanel { //--------------------------------
       playerThreeUser.setText(parent.startGamePanel.getPlayerThreeComboBox());
       
     
+   }
+
+
+   public void setPlayerOneName(String name){ //---------------------------------------------------------------
+      playerOneName.setText(name);
+   }
+
+   public void setPlayerTwoName(String name){ //---------------------------------------------------------------
+      playerTwoName.setText(name);
+   }
+
+   public void setPlayerThreeName(String name){ //---------------------------------------------------------------
+      playerThreeName.setText(name);
    }
    
 } // End------------------------------------------------------------------------------------------------------

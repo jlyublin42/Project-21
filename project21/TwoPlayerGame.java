@@ -2,8 +2,6 @@ package project21;
 
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
-import javax.swing.event.*;
 
 public class TwoPlayerGame extends JPanel { //----------------------------------------------------------------
    
@@ -12,6 +10,8 @@ public class TwoPlayerGame extends JPanel { //----------------------------------
    private Color color = new Color(0x176121);
    private ImageIcon project21 = new ImageIcon("project21.png");
    private Font font = new Font("Arial", Font.BOLD, 18);
+   JLabel playerOneName;
+   JLabel playerTwoName;
    
    //Constructor
    public TwoPlayerGame(GameFrame parent) { //----------------------------------------------------------------
@@ -22,12 +22,12 @@ public class TwoPlayerGame extends JPanel { //----------------------------------
       this.setVisible(true);
       
       
-      JLabel playerOneName = new JLabel();
+      playerOneName = new JLabel();
       playerOneName.setBounds(200, 200, 180, 20);
       playerOneName.setBackground(Color.lightGray);
       playerOneName.setFont(font);
       
-      JLabel playerTwoName = new JLabel();
+      playerTwoName = new JLabel();
       playerTwoName.setBounds(200, 225, 180, 20);
       playerTwoName.setBackground(Color.lightGray);
       playerTwoName.setFont(font);
@@ -35,10 +35,14 @@ public class TwoPlayerGame extends JPanel { //----------------------------------
       this.add(playerOneName);
       this.add(playerTwoName);
       
-      playerOneName.setText(parent.startGamePanel.getPlayerOneName());
-      playerTwoName.setText(parent.startGamePanel.getPlayerTwoName());
-      
-      
+   }
+
+   public void setPlayerOneName(String name){ //---------------------------------------------------------------
+      playerOneName.setText(name);
+   }
+
+   public void setPlayerTwoName(String name){ //---------------------------------------------------------------
+      playerTwoName.setText(name);
    }
    
 } // End------------------------------------------------------------------------------------------------------

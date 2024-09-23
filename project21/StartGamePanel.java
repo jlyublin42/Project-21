@@ -47,8 +47,6 @@ public class StartGamePanel extends JPanel { //---------------------------------
       playerOneName.setBackground(Color.lightGray);
       playerOneName.setFont(font);
       
-      
-      
       twoPlayer = new JRadioButton();
       twoPlayer.setBounds(240, 380, 20, 20);
       twoPlayer.setBackground(Color.lightGray);
@@ -181,10 +179,16 @@ public class StartGamePanel extends JPanel { //---------------------------------
          public void actionPerformed(ActionEvent e) {
         
             if (onePlayer.isSelected()) {
-              parent.selectGame(1);
+               parent.onePlayerGame.setPlayerOneName(getPlayerOneName()); // Passes Name into OnePlayerGame
+               parent.selectGame(1);
             } else if (twoPlayer.isSelected()){
+               parent.twoPlayerGame.setPlayerOneName(getPlayerOneName());
+               parent.twoPlayerGame.setPlayerTwoName(getPlayerTwoName());
                parent.selectGame(2);
             } else if (threePlayer.isSelected()){
+               parent.threePlayerGame.setPlayerOneName(getPlayerOneName());
+               parent.threePlayerGame.setPlayerTwoName(getPlayerTwoName());
+               parent.threePlayerGame.setPlayerThreeName(getPlayerThreeName());
                parent.selectGame(3);
             }
               
@@ -211,7 +215,6 @@ public class StartGamePanel extends JPanel { //---------------------------------
    }
    
    public String getPlayerOneName(){ //-----------------------------------------------------------------------
-      System.out.println(playerOneName.getText());
       return playerOneName.getText();
    }
    

@@ -26,6 +26,7 @@ public class OnePlayerGame extends JPanel { //----------------------------------
    JLabel bankRoll;
    JLabel betLabel;
    JLabel betNumLabel;
+   JButton allIn;
    JButton placeBet;
    JButton minus;
    JButton plus;
@@ -120,6 +121,11 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       placeBet.setBounds(420, 5, 130, 25);
       placeBet.setFont(font);
 
+      allIn = new JButton("All In");
+      allIn.setMnemonic(KeyEvent.VK_A);
+      allIn.setBounds(320, 5, 90, 25);
+      allIn.setFont(font);
+
       minus = new JButton("-");
       minus.setBounds(745, 5, 50, 25);
       minus.setFont(font2);
@@ -137,6 +143,7 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       playerOnePanel.add(minus);
       playerOnePanel.add(plus);
       playerOnePanel.add(placeBet);
+      playerOnePanel.add(allIn);
       
 
       // Set up buttonPanel
@@ -203,10 +210,11 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       plus.addActionListener(new ActionListener() {
          
          public void actionPerformed(ActionEvent e) {
-            
-            bet+= 25;
-            betNumLabel.setText("$ " + bet);
-            
+           
+            if (bet < bank){
+               bet+= 25;
+               betNumLabel.setText("$ " + bet);
+            }
          }
          
       });
@@ -230,10 +238,22 @@ public class OnePlayerGame extends JPanel { //----------------------------------
             subtractBankRoll(bet);
             setBankRoll();
             placeBet.setVisible(false);
+            allIn.setVisible(false);
             plus.setEnabled(false);
             minus.setEnabled(false);
             dealButton.setEnabled(true);
             info.setText("Press DEAL to deal the cards");
+
+         }
+         
+      });
+
+      allIn.addActionListener(new ActionListener() {
+         
+         public void actionPerformed(ActionEvent e) {
+            
+            bet = bank;
+            betNumLabel.setText("$ " + bet);
 
          }
          

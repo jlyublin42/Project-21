@@ -41,11 +41,17 @@ public class StartGamePanel extends JPanel { //---------------------------------
       onePlayer = new JRadioButton();
       onePlayer.setBounds(240, 340, 20, 20);
       onePlayer.setBackground(Color.lightGray);
+      onePlayer.setSelected(true);
       playerOneName = new JTextField("One Player");
       playerOneName.setBounds(264, 334, 140, 30);
       playerOneName.setBorder(BorderFactory.createLoweredBevelBorder());
       playerOneName.setBackground(Color.lightGray);
       playerOneName.setFont(font);
+      int caretPosition = playerOneName.getCaretPosition();
+      String currentText = playerOneName.getText();
+      playerOneName.requestFocus();
+      playerOneName.setCaretPosition(caretPosition + currentText.length());
+      //playerOneName.setEditable(false);
       
       twoPlayer = new JRadioButton();
       twoPlayer.setBounds(240, 380, 20, 20);
@@ -55,6 +61,7 @@ public class StartGamePanel extends JPanel { //---------------------------------
       playerTwoName.setBorder(BorderFactory.createLoweredBevelBorder());
       playerTwoName.setBackground(Color.lightGray);
       playerTwoName.setFont(font);
+      playerTwoName.setEditable(false);
       
       threePlayer = new JRadioButton();
       threePlayer.setBounds(240, 420, 20, 20);
@@ -64,6 +71,7 @@ public class StartGamePanel extends JPanel { //---------------------------------
       playerThreeName.setBorder(BorderFactory.createLoweredBevelBorder());
       playerThreeName.setBackground(Color.lightGray);
       playerThreeName.setFont(font);
+      playerThreeName.setEditable(false);
       
       bg = new ButtonGroup();
       bg.add(onePlayer);
@@ -71,10 +79,10 @@ public class StartGamePanel extends JPanel { //---------------------------------
       bg.add(threePlayer);
 
       // Disable Two and Three player games
-      twoPlayer.setEnabled(false);
-      playerTwoName.setEditable(false);
-      threePlayer.setEnabled(false);
-      playerThreeName.setEditable(false);
+      //twoPlayer.setEnabled(false);
+      //playerTwoName.setEditable(false);
+      //threePlayer.setEnabled(false);
+      //playerThreeName.setEditable(false);
 
       
       
@@ -122,20 +130,22 @@ public class StartGamePanel extends JPanel { //---------------------------------
       onePlayer.addActionListener(new ActionListener() {
          
          public void actionPerformed(ActionEvent e) {
-        
+            playerOneName.setEditable(true);
+            playerTwoName.setEditable(false);
+            playerThreeName.setEditable(false);
+            selectedButton();
             int caretPosition = playerOneName.getCaretPosition();
             String currentText = playerOneName.getText();
             playerOneName.requestFocus();
             playerOneName.setCaretPosition(caretPosition + currentText.length());
-            selectedButton();
-                   
+            
          } 
       });
-      
+      /* 
       playerOneName.addActionListener(new ActionListener() {
          
          public void actionPerformed(ActionEvent e) {
-        
+            
             int caretPosition = playerOneName.getCaretPosition();
             String currentText = playerOneName.getText();
             playerOneName.requestFocus();
@@ -143,17 +153,21 @@ public class StartGamePanel extends JPanel { //---------------------------------
             onePlayer.setSelected(true);
                    
          } 
-      });
+      }); */
 
       twoPlayer.addActionListener(new ActionListener() {
          
          public void actionPerformed(ActionEvent e) {
         
+            playerOneName.setEditable(true);
+            playerTwoName.setEditable(true);
+            playerThreeName.setEditable(false);
+            selectedButton();
             int caretPosition = playerOneName.getCaretPosition();
             String currentText = playerOneName.getText();
             playerOneName.requestFocus();
             playerOneName.setCaretPosition(caretPosition + currentText.length());
-            selectedButton();
+            
                    
          } 
       });
@@ -161,12 +175,16 @@ public class StartGamePanel extends JPanel { //---------------------------------
       threePlayer.addActionListener(new ActionListener() {
          
          public void actionPerformed(ActionEvent e) {
-        
+            
+            playerOneName.setEditable(true);
+            playerTwoName.setEditable(true);
+            playerThreeName.setEditable(true);
+            selectedButton();
             int caretPosition = playerOneName.getCaretPosition();
             String currentText = playerOneName.getText();
             playerOneName.requestFocus();
             playerOneName.setCaretPosition(caretPosition + currentText.length());
-            selectedButton();
+            
                    
          } 
       });
@@ -241,6 +259,7 @@ public class StartGamePanel extends JPanel { //---------------------------------
             threePlayerCB.setEnabled(false);
          } else if (twoPlayer.isSelected()){
             twoPlayerCB.setEnabled(true);
+            threePlayerCB.setEnabled(false);
          } else if (threePlayer.isSelected()){
             twoPlayerCB.setEnabled(true);
             threePlayerCB.setEnabled(true);

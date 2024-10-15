@@ -16,21 +16,24 @@ public class Deck extends Exception implements Serializable
 		int count = 0;
 		try
         {
-		for (int i = 1; i <= 13; i++) {
+		for (int i = 1; i <= 13; i++) 
+		{
 			deck[count++] = new Card('H', i);
 		}
-		for (int i = 1; i <= 13; i++) {
+		for (int i = 1; i <= 13; i++) 
+		{
 			deck[count++] = new Card('S', i);
 		}
-		for (int i = 1; i <= 13; i++) {
+		for (int i = 1; i <= 13; i++) 
+		{
 			deck[count++] = new Card('C', i);
 		}
-		for (int i = 1; i <= 13; i++) {
+		for (int i = 1; i <= 13; i++) 
+		{
 			deck[count++] = new Card('D', i);
 		}
-        Finally
 		}
-
         nextCardIndex = 0;
+		
     }
 }

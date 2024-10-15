@@ -36,19 +36,19 @@ public class Cards implements Serializable
 
         if (this.suit == 'H')
         {
-            suit = "Hearts";
+            suit = "Heart";
         }
         else if (this.suit == 'C')
         {
-            suit = "Clubs";
+            suit = "Club";
         }
         else if (this.suit == 'D')
         {
-            suit = "Diamondss";
+            suit = "Diamond";
         }
         else if (this.suit == 'S')
         {
-            suit = "Spades";
+            suit = "Spade";
         }
         else
         {
@@ -66,55 +66,55 @@ public class Cards implements Serializable
         {
             String name = "None";
 
-            if(this.value == 0)
+            if(this.value == 1)
             {
                 name = "Ace";
             }
-            if(this.value == 1)
+            if(this.value == 2)
             {
                 name = "Two";
             }
-            if(this.value == 2)
+            if(this.value == 3)
             {
                 name = "Three";
             }
-            if(this.value == 3)
+            if(this.value == 4)
             {
                 name = "Four";
             }
-            if(this.value == 4)
+            if(this.value == 5)
             {
                 name = "Five";
             }
-            if(this.value == 5)
+            if(this.value == 6)
             {
                 name = "Six";
             }
-            if(this.value == 6)
+            if(this.value == 7)
             {
                 name = "Seven";
             }
-            if(this.value == 7)
+            if(this.value == 8)
             {
                 name = "Eight";
             }
-            if(this.value == 8)
+            if(this.value == 9)
             {
                 name = "Nine";
             }
-            if(this.value == 9)
+            if(this.value == 10)
             {
                 name = "Ten";
             }
-            if(this.value == 10)
+            if(this.value == 11)
             {
                 name = "Jack";
             }
-            if(this.value == 11)
+            if(this.value == 12)
             {
                 name = "Queen";
             }
-            if(this.value == 12)
+            if(this.value == 13)
             {
                 name = "King";
             }

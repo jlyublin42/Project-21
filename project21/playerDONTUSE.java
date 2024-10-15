@@ -1,4 +1,4 @@
-import java.io.Serializable;
+/*import java.io.Serializable;
 
 public class player implements Serializable
 {
@@ -92,4 +92,4 @@ public class player implements Serializable
 		hand.clearHand();
 	}
 		
-} //End class
+} //End class*/

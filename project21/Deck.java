@@ -70,30 +70,6 @@ public class Deck { //----------------------------------------------------------
         int[] values = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
         int cardIdx = 0;
 
-<<<<<<< Updated upstream
-		int count = 0;
-		try
-        {
-		for (int i = 1; i <= 13; i++) 
-		{
-			deck[count++] = new Card('H', i);
-		}
-		for (int i = 1; i <= 13; i++) 
-		{
-			deck[count++] = new Card('S', i);
-		}
-		for (int i = 1; i <= 13; i++) 
-		{
-			deck[count++] = new Card('C', i);
-		}
-		for (int i = 1; i <= 13; i++) 
-		{
-			deck[count++] = new Card('D', i);
-		}
-		}
-        nextCardIndex = 0;
-		
-=======
         for (String suit : suits) {
             for (int i = 0; i < ranks.length; i++) {
                 cards.add(new Card(suit, ranks[i], values[i], cardIdx));
@@ -107,7 +83,6 @@ public class Deck { //----------------------------------------------------------
 
     public void shuffle() { //-----------------------------------------------------------------------------------------------
         Collections.shuffle(cards);
->>>>>>> Stashed changes
     }
 
     public Card drawCard(int i) { //-----------------------------------------------------------------------------------------

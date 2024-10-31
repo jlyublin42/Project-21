@@ -26,12 +26,21 @@ public class OnePlayerGame extends JPanel { //----------------------------------
    JLabel bankRoll;
    JLabel betLabel;
    JLabel betNumLabel;
+   JTextField info;
    JButton allIn;
    JButton placeBet;
    JButton minus;
    JButton plus;
    int bet = 25;
    int bank = 500;
+   JLabel[] cards = new JLabel[10];
+   Deck deck;
+   Hand playerOneHand;
+   Hand dealerHand;
+   int count = 0;
+   int plyrCardValue = 0;
+   int dlrCardValue = 0;
+   Card dlrFirstCard;
    
    // Constructor
    public OnePlayerGame(GameFrame parent) { //--------------------------------------------------------------------------------
@@ -57,6 +66,11 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       playerCards.setBounds(400, 660, 800, 198);
       playerCards.setLayout(new FlowLayout());
       playerCards.setBorder(BorderFactory.createLineBorder(Color.black, 3));
+      playerCards.add(cards[0] = new JLabel()); //First card dealt
+      playerCards.add(cards[2] = new JLabel()); //Third card dealt
+      playerCards.add(cards[4] = new JLabel());
+      playerCards.add(cards[5] = new JLabel());
+      playerCards.add(cards[6] = new JLabel()); 
 
 
       // Dealer Cards
@@ -65,6 +79,11 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       dealerCards.setBounds(400, 50, 800, 198);
       dealerCards.setLayout(new FlowLayout());
       dealerCards.setBorder(BorderFactory.createLineBorder(Color.black, 3));
+      dealerCards.add(cards[1] = new JLabel()); //Second card dealt
+      dealerCards.add(cards[3] = new JLabel()); //Fourth card dealt
+      dealerCards.add(cards[7] = new JLabel());
+      dealerCards.add(cards[8] = new JLabel());
+      dealerCards.add(cards[9] = new JLabel());
 
 
       // playerOnePanel should be located underneath playerOne Cards
@@ -76,8 +95,6 @@ public class OnePlayerGame extends JPanel { //----------------------------------
 
       playerOneName = new JLabel();
       playerOneName.setBounds(5, 0, 120, 35);
-      //playerOneName.setBorder(BorderFactory.createRaisedBevelBorder());
-      //playerOneName.setBackground(Color.darkGray);
       playerOneName.setForeground(Color.white);
       playerOneName.setFont(font);
 
@@ -180,7 +197,7 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       infoPanel.setForeground(Color.lightGray);
       infoPanel.setBorder(BorderFactory.createLoweredBevelBorder());
        
-      JTextField info = new JTextField("Press PLACE BET to place your bet for this hand");
+      info = new JTextField("Press PLACE BET to place your bet for this hand");
       info.setBounds(1000, 0, 585, 40);
       info.setBorder(BorderFactory.createLoweredBevelBorder());
       info.setBackground(Color.darkGray);
@@ -201,7 +218,10 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       this.add(infoPanel);
 
 
-
+      // Initialize Deck and Hands
+      deck = new Deck();
+      playerOneHand = new Hand();
+      dealerHand = new Hand();
 
 
 
@@ -258,9 +278,93 @@ public class OnePlayerGame extends JPanel { //----------------------------------
          }
          
       });
+
+      dealButton.addActionListener(new ActionListener(){
+
+         public void actionPerformed(ActionEvent e) {
+
+            dealButton.setEnabled(false);
+            hitButton.setEnabled(true);
+            stayButton.setEnabled(true);
+
+            for (int i = 0; i < 4;i++){
+               Card cardIdx = deck.drawCard(i);
+               if (i == 1){
+                  cards[i].setIcon(cardBack);
+                  dlrFirstCard = cardIdx;
+               } else {
+                  cards[i].setIcon(deck.getIcon(cardIdx.getCardNum()));
+               }
+               count++;
+               if (i == 0 || i == 2){
+                  playerOneHand.addCard(deck.drawCard(i));
+                  plyrCardValue += cardIdx.getValue();
+                  System.out.println(plyrCardValue);
+                  if (plyrCardValue == 21){
+                     hitButton.setEnabled(false);
+                  }
+               }else {
+                  dealerHand.addCard(deck.drawCard(i));
+                  dlrCardValue += cardIdx.getValue();
+                  System.out.println(dlrCardValue);
+               }
+            } 
+            dealButton.setEnabled(false);
+            info.setText("Press HIT or Press STAY");
+
+         }
+
+      });
+
+      hitButton.addActionListener(new ActionListener() {
+         
+         public void actionPerformed(ActionEvent e) {
+            
+            if (plyrCardValue < 22){
+               Card cardIdx = deck.drawCard(count);
+               cards[count].setIcon(deck.getIcon(cardIdx.getCardNum()));
+               if ( count == 4 || count == 5 || count == 6){
+                  playerOneHand.addCard(deck.drawCard(count));
+                  plyrCardValue = playerOneHand.getTotalValue();
+                  System.out.println(plyrCardValue);
+                  if (plyrCardValue > 21){
+                     cards[1].setIcon(deck.getIcon(dlrFirstCard.getCardNum()));
+                     checkWinner();
+                  } else if (plyrCardValue == 21){
+                     hitButton.setEnabled(false);
+                  }
+               } 
+               count++;
+            }
+         }
+      });
+
+
+      stayButton.addActionListener(new ActionListener() {
+         
+         public void actionPerformed(ActionEvent e) {
+            
+            cards[1].setIcon(deck.getIcon(dlrFirstCard.getCardNum()));
+            for (int i = 7; i < 10; i++){
+               if (dlrCardValue < plyrCardValue && dlrCardValue < 17){
+                  Card cardIdx = deck.drawCard(count);
+                  cards[i].setIcon(deck.getIcon(cardIdx.getCardNum()));
+                  dealerHand.addCard(deck.drawCard(count));
+                  dlrCardValue = dealerHand.getTotalValue();
+                  System.out.println(dlrCardValue);
+                  count++;
+               }
+            }
+
+            checkWinner();
+
+         }
+         
+      });
  
       
-   } // End Constructor
+   } // End Constructor -------------------------------------------------------------------------------------------------------------------------
+
 
    public void setPlayerOneName(String name){ //--------------------------------------------------------------------------------------------------
 
@@ -268,7 +372,7 @@ public class OnePlayerGame extends JPanel { //----------------------------------
 
    }
 
-   public void setBankRoll(){ //----------------------------------------------------------------------------------------------------------
+   public void setBankRoll(){ //------------------------------------------------------------------------------------------------------------------
       bankRoll.setText("$ " + bank);
    }
 
@@ -283,6 +387,69 @@ public class OnePlayerGame extends JPanel { //----------------------------------
    public void subtractBankRoll(int num){ //----------------------------------------------------------------------------------------------------
       bank -= num;
    }
+
+   private void checkWinner() { //-------------------------------------------------------------------------------------------------------------
+      hitButton.setEnabled(false);
+      stayButton.setEnabled(false);
+      int playerTotal = playerOneHand.getTotalValue();
+      int dealerTotal = dealerHand.getTotalValue();
+
+      if (playerTotal > 21) {
+         info.setText("You busted! Dealer wins.");
+         System.out.println("You busted! Dealer wins.");
+      } else if (dealerTotal > 21) {
+         info.setText("Dealer busted! You win.");
+         System.out.println("Dealer busted! You win.");
+      } else if (playerTotal > dealerTotal) {
+         info.setText("You win with " + playerTotal + " against " + dealerTotal + "!");
+         System.out.println("You win with " + playerTotal + " against " + dealerTotal + "!");
+      } else if (playerTotal < dealerTotal) {
+         info.setText("Dealer wins with " + dealerTotal + " against " + playerTotal + ".");
+         System.out.println("Dealer wins with " + dealerTotal + " against " + playerTotal + ".");
+      } else {
+         info.setText("It's a tie!");
+         System.out.println("It's a tie!");
+      }
+
+   
+      settleBets();
+
+   }
+
+
+   private void settleBets(){ //--------------------------------------------------------------------------------------------------------------
+      int playerTotal = playerOneHand.getTotalValue();
+      int dealerTotal = dealerHand.getTotalValue();
+      int winnings = 0;
+         
+      if (dealerTotal > 21) {
+         if (playerTotal == 21) {
+            winnings = bet * 3;
+            addBankRoll(winnings);
+            setBankRoll();
+         } else {
+            winnings = bet * 2;
+            addBankRoll(winnings);
+            setBankRoll();
+         }
+      } else if (playerTotal > dealerTotal && playerTotal < 22) {
+         if (playerTotal == 21) {
+            winnings = bet * 3;
+            addBankRoll(winnings);
+            setBankRoll();
+         } else {
+            winnings = bet * 2;
+            addBankRoll(winnings);
+            setBankRoll();
+         }
+      } else if (playerTotal == dealerTotal){
+         addBankRoll(bet);
+         setBankRoll();
+      }
+
+   }
+
+
 
    
 } // End ---------------------------------------------------------------------------------------------------------------------------------------

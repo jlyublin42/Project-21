@@ -310,7 +310,7 @@ public class OnePlayerGame extends JPanel { //----------------------------------
                }
             } 
             dealButton.setEnabled(false);
-            info.setText("Press HIT or Press STAY");
+            info.setText("You have " + plyrCardValue + " Press HIT or Press STAY");
 
          }
 
@@ -326,12 +326,14 @@ public class OnePlayerGame extends JPanel { //----------------------------------
                if ( count == 4 || count == 5 || count == 6){
                   playerOneHand.addCard(deck.drawCard(count));
                   plyrCardValue = playerOneHand.getTotalValue();
+                  info.setText("You have " + plyrCardValue + " Press HIT or Press STAY");
                   System.out.println(plyrCardValue);
                   if (plyrCardValue > 21){
                      cards[1].setIcon(deck.getIcon(dlrFirstCard.getCardNum()));
                      checkWinner();
                   } else if (plyrCardValue == 21){
                      hitButton.setEnabled(false);
+                     info.setText("You have " + plyrCardValue + " Press STAY");
                   }
                } 
                count++;

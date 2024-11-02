@@ -11,6 +11,7 @@ public class StartGamePanel extends JPanel { //---------------------------------
    private final Color color = new Color(0x8c8c8c);
    private final ImageIcon project21 = new ImageIcon("project21.png");
    private final Font font = new Font("Arial", Font.BOLD, 18);
+   private final Font font2 = new Font("Arial", Font.BOLD, 20);
    private JRadioButton onePlayer;
    private JRadioButton twoPlayer;
    private JRadioButton threePlayer;
@@ -28,7 +29,7 @@ public class StartGamePanel extends JPanel { //---------------------------------
    public StartGamePanel(GameFrame parent) { //-------------------------------------------------------------------------------
       
       this.setSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
-      this.setBackground(Color.lightGray);
+      this.setBackground(Color.darkGray);
       this.setLayout(null);
       this.setBorder(BorderFactory.createRaisedBevelBorder());
       
@@ -40,12 +41,13 @@ public class StartGamePanel extends JPanel { //---------------------------------
       // Create the three radio buttons and add to group
       onePlayer = new JRadioButton();
       onePlayer.setBounds(240, 340, 20, 20);
-      onePlayer.setBackground(Color.lightGray);
+      onePlayer.setBackground(Color.darkGray);
       onePlayer.setSelected(true);
       playerOneName = new JTextField("One Player");
       playerOneName.setBounds(264, 334, 140, 30);
       playerOneName.setBorder(BorderFactory.createLoweredBevelBorder());
-      playerOneName.setBackground(Color.lightGray);
+      playerOneName.setBackground(Color.darkGray);
+      playerOneName.setForeground(Color.white);
       playerOneName.setFont(font);
       int caretPosition = playerOneName.getCaretPosition();
       String currentText = playerOneName.getText();
@@ -55,21 +57,23 @@ public class StartGamePanel extends JPanel { //---------------------------------
       
       twoPlayer = new JRadioButton();
       twoPlayer.setBounds(240, 380, 20, 20);
-      twoPlayer.setBackground(Color.lightGray);
+      twoPlayer.setBackground(Color.darkGray);
       playerTwoName = new JTextField("Two Players");
       playerTwoName.setBounds(264, 374, 140, 30);
       playerTwoName.setBorder(BorderFactory.createLoweredBevelBorder());
-      playerTwoName.setBackground(Color.lightGray);
+      playerTwoName.setBackground(Color.darkGray);
+      playerTwoName.setForeground(Color.white);
       playerTwoName.setFont(font);
       playerTwoName.setEditable(false);
       
       threePlayer = new JRadioButton();
       threePlayer.setBounds(240, 420, 20, 20);
-      threePlayer.setBackground(Color.lightGray);
+      threePlayer.setBackground(Color.darkGray);
       playerThreeName = new JTextField("Three Players");
       playerThreeName.setBounds(264, 414, 140, 30);
       playerThreeName.setBorder(BorderFactory.createLoweredBevelBorder());
-      playerThreeName.setBackground(Color.lightGray);
+      playerThreeName.setBackground(Color.darkGray);
+      playerThreeName.setForeground(Color.white);
       playerThreeName.setFont(font);
       playerThreeName.setEditable(false);
       
@@ -92,6 +96,8 @@ public class StartGamePanel extends JPanel { //---------------------------------
       twoPlayerCB.addItem("AI");
       twoPlayerCB.setBounds(420, 375, 120, 30);
       twoPlayerCB.setFont(font);
+      twoPlayerCB.setBackground(Color.darkGray);
+      twoPlayerCB.setForeground(Color.white);
       twoPlayerCB.setEnabled(false);
       
       threePlayerCB = new JComboBox();
@@ -99,16 +105,20 @@ public class StartGamePanel extends JPanel { //---------------------------------
       threePlayerCB.addItem("AI");
       threePlayerCB.setBounds(420, 415, 120, 30);
       threePlayerCB.setFont(font);
+      threePlayerCB.setBackground(Color.darkGray);
+      threePlayerCB.setForeground(Color.white);
       threePlayerCB.setEnabled(false);
       
       
       // Create start and exit buttons
       startBtn = new JButton("Start Game");
       startBtn.setMnemonic(KeyEvent.VK_S);
-      startBtn.setBounds(310, 470, 100, 30);
+      startBtn.setBounds(270, 470, 140, 30);
+      startBtn.setFont(font);
       exitBtn = new JButton("Exit");
       exitBtn.setMnemonic(KeyEvent.VK_X);
-      exitBtn.setBounds(430, 470, 60, 30);
+      exitBtn.setBounds(430, 470, 80, 30);
+      exitBtn.setFont(font);
    
      
       
@@ -225,7 +235,7 @@ public class StartGamePanel extends JPanel { //---------------------------------
       });
       
       
-   }
+   } // End Constructor
    
    
    public void selectPlayerOne(){ //--------------------------------------------------------------------------

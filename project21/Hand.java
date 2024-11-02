@@ -38,6 +38,10 @@ public class Hand { //----------------------------------------------------------
         return total;
     }
 
+    public void clearHand(){
+        cards.clear();
+    }
+
     public String toString() { //-----------------------------------------------------------------------------------------
         return cards.toString();
     }

@@ -15,6 +15,7 @@ public class GameFrame extends JFrame { //--------------------------------------
    OnePlayerGame onePlayerGame = new OnePlayerGame(this);
    TwoPlayerGame twoPlayerGame = new TwoPlayerGame(this);
    ThreePlayerGame threePlayerGame = new ThreePlayerGame(this);
+   WalkAwayPanel walkAwayPanel = new WalkAwayPanel(this);
 
    
    // Constructor
@@ -35,18 +36,22 @@ public class GameFrame extends JFrame { //--------------------------------------
       onePlayerGame.setBounds(0, 0, 1600, 1000);
       twoPlayerGame.setBounds(0, 0, 1600, 1000);
       threePlayerGame.setBounds(0, 0, 1600, 1000);
+      walkAwayPanel.setBounds(400, 225, 800, 525);
       // Hides game panels until selected later
       onePlayerGame.setVisible(false);          
       twoPlayerGame.setVisible(false);                       
-      threePlayerGame.setVisible(false);                       
+      threePlayerGame.setVisible(false);   
+      walkAwayPanel.setVisible(false);                    
       
       this.add(startGamePanel);
+      this.add(walkAwayPanel);
       this.add(onePlayerGame);
       this.add(twoPlayerGame);
       this.add(threePlayerGame);
       
       
-   }
+      
+   } // End Constructor
    
    public void selectGame(int panel){ //----------------------------------------------------------------------
       

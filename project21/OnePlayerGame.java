@@ -18,9 +18,12 @@ public class OnePlayerGame extends JPanel { //----------------------------------
    JPanel playerCards;
    JPanel dealerCards;
    JPanel buttonPanel;
+   JPanel buttonPanel2;
    JButton dealButton;
    JButton hitButton;
    JButton stayButton;
+   JButton nextHandButton;
+   JButton walkAwayButton;
    JLabel playerOneName;
    JLabel bankLabel;
    JLabel bankRoll;
@@ -113,11 +116,7 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       bankRoll.setFont(font);
 
 
-
-
-
       // Bet labels and buttons
-
       betLabel = new JLabel();
       betLabel.setText("Bet:");
       betLabel.setBounds(560, 2, 50, 30);
@@ -189,6 +188,25 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       buttonPanel.add(hitButton);
       buttonPanel.add(stayButton);
 
+      // Set up buttonPanel2
+      buttonPanel2 = new JPanel();
+      buttonPanel2.setLayout(null);
+      buttonPanel2.setBackground(Color.darkGray);
+      buttonPanel2.setBounds(-3, 835, 168, 90);
+      buttonPanel2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+      nextHandButton = new JButton("Next Hand");
+      nextHandButton.setMnemonic(KeyEvent.VK_X);
+      nextHandButton.setBounds(10, 10, 150, 30);
+      nextHandButton.setFont(font);
+      nextHandButton.setEnabled(false); // Disables NextHand Button
+      walkAwayButton = new JButton("Walk Away");
+      walkAwayButton.setMnemonic(KeyEvent.VK_W);
+      walkAwayButton.setBounds(10, 50, 150, 30);
+      walkAwayButton.setFont(font);
+      // Add Buttons
+      buttonPanel2.add(nextHandButton);
+      buttonPanel2.add(walkAwayButton);
+
 
       // Info Panel - Bottom 
       infoPanel.setBounds(0, 925, 1600, 75);
@@ -215,6 +233,7 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       this.add(dealerCards);
       this.add(playerOnePanel);
       this.add(buttonPanel);
+      this.add(buttonPanel2);
       this.add(infoPanel);
 
 
@@ -263,6 +282,8 @@ public class OnePlayerGame extends JPanel { //----------------------------------
             minus.setEnabled(false);
             dealButton.setEnabled(true);
             info.setText("Press DEAL to deal the cards");
+            nextHandButton.setEnabled(false);
+            walkAwayButton.setEnabled(false);
 
          }
          
@@ -286,6 +307,8 @@ public class OnePlayerGame extends JPanel { //----------------------------------
             dealButton.setEnabled(false);
             hitButton.setEnabled(true);
             stayButton.setEnabled(true);
+            nextHandButton.setEnabled(false);
+            walkAwayButton.setEnabled(false);
 
             for (int i = 0; i < 4;i++){
                Card cardIdx = deck.drawCard(i);
@@ -319,8 +342,10 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       hitButton.addActionListener(new ActionListener() {
          
          public void actionPerformed(ActionEvent e) {
-            
-            if (plyrCardValue < 22){
+
+            if (count == 7){
+               hitButton.setEnabled(false);
+            } else if (plyrCardValue < 22){
                Card cardIdx = deck.drawCard(count);
                cards[count].setIcon(deck.getIcon(cardIdx.getCardNum()));
                if ( count == 4 || count == 5 || count == 6){
@@ -330,7 +355,8 @@ public class OnePlayerGame extends JPanel { //----------------------------------
                   System.out.println(plyrCardValue);
                   if (plyrCardValue > 21){
                      cards[1].setIcon(deck.getIcon(dlrFirstCard.getCardNum()));
-                     checkWinner();
+                     nextHandButton.setEnabled(true);
+                     checkWinner();   
                   } else if (plyrCardValue == 21){
                      hitButton.setEnabled(false);
                      info.setText("You have " + plyrCardValue + " Press STAY");
@@ -360,6 +386,56 @@ public class OnePlayerGame extends JPanel { //----------------------------------
 
             checkWinner();
 
+         }
+         
+      });
+
+
+      nextHandButton.addActionListener(new ActionListener() {
+         
+         public void actionPerformed(ActionEvent e) {
+            
+            minus.setEnabled(true);
+            plus.setEnabled(true);
+            placeBet.setVisible(true);
+            allIn.setVisible(true);
+            hitButton.setEnabled(false);
+            stayButton.setEnabled(false);
+            info.setText("Press PLACE BET to place your bet for this hand");
+
+            for (int i = 0; i < 10; i++){
+               cards[i].setIcon(null);
+            }
+
+            count = 0;
+            plyrCardValue = 0;
+            dlrCardValue = 0;
+
+            playerOneHand.clearHand();
+            dealerHand.clearHand();
+
+            if (bet > bank){
+               bet = 25;
+               betNumLabel.setText("$ " + bet);
+            }
+
+            deck.shuffle();
+
+            
+
+
+
+         }
+         
+      });
+
+
+      walkAwayButton.addActionListener(new ActionListener() {
+         
+         public void actionPerformed(ActionEvent e) {
+            
+            parent.walkAwayPanel.setVisible(true);
+            
          }
          
       });
@@ -424,7 +500,12 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       int dealerTotal = dealerHand.getTotalValue();
       int winnings = 0;
          
-      if (dealerTotal > 21) {
+      
+      if (playerTotal > 21) {
+            winnings = 0;
+            addBankRoll(winnings);
+            setBankRoll();
+      } else if (dealerTotal > 21) {
          if (playerTotal == 21) {
             winnings = bet * 3;
             addBankRoll(winnings);
@@ -444,9 +525,21 @@ public class OnePlayerGame extends JPanel { //----------------------------------
             addBankRoll(winnings);
             setBankRoll();
          }
+      } else if (playerTotal < dealerTotal){
+         winnings = 0;
+         addBankRoll(winnings);
+         setBankRoll();
       } else if (playerTotal == dealerTotal){
          addBankRoll(bet);
          setBankRoll();
+      }
+
+      if (bank == 0){
+         nextHandButton.setEnabled(false);
+         walkAwayButton.setEnabled(true);
+      } else {
+         nextHandButton.setEnabled(true);
+         walkAwayButton.setEnabled(true);
       }
 
    }

@@ -59,8 +59,59 @@ public class Deck { //----------------------------------------------------------
     ImageIcon heartJ = new ImageIcon("HeartJ.png");
     ImageIcon heartQ = new ImageIcon("HeartQ.png");
     ImageIcon heartK = new ImageIcon("HeartK.png");
-    ImageIcon cardBack = new ImageIcon("CardBack.png");
-
+    ImageIcon spadeAsm = new ImageIcon("SpadeAsm.png");
+    ImageIcon spade2sm = new ImageIcon("Spade2sm.png");
+    ImageIcon spade3sm = new ImageIcon("Spade3sm.png");
+    ImageIcon spade4sm = new ImageIcon("Spade4sm.png");
+    ImageIcon spade5sm = new ImageIcon("Spade5sm.png");
+    ImageIcon spade6sm = new ImageIcon("Spade6sm.png");
+    ImageIcon spade7sm = new ImageIcon("Spade7sm.png");
+    ImageIcon spade8sm = new ImageIcon("Spade8sm.png");
+    ImageIcon spade9sm = new ImageIcon("Spade9sm.png");
+    ImageIcon spade10sm = new ImageIcon("Spade10sm.png");
+    ImageIcon spadeJsm = new ImageIcon("SpadeJsm.png");
+    ImageIcon spadeQsm = new ImageIcon("SpadeQsm.png");
+    ImageIcon spadeKsm = new ImageIcon("SpadeKsm.png");
+    ImageIcon diamondAsm = new ImageIcon("DiamondAsm.png");
+    ImageIcon diamond2sm = new ImageIcon("Diamond2sm.png");
+    ImageIcon diamond3sm = new ImageIcon("Diamond3sm.png");
+    ImageIcon diamond4sm = new ImageIcon("Diamond4sm.png");
+    ImageIcon diamond5sm = new ImageIcon("Diamond5sm.png");
+    ImageIcon diamond6sm = new ImageIcon("Diamond6sm.png");
+    ImageIcon diamond7sm = new ImageIcon("Diamond7sm.png");
+    ImageIcon diamond8sm = new ImageIcon("Diamond8sm.png");
+    ImageIcon diamond9sm = new ImageIcon("Diamond9sm.png");
+    ImageIcon diamond10sm = new ImageIcon("Diamond10sm.png");
+    ImageIcon diamondJsm = new ImageIcon("DiamondJsm.png");
+    ImageIcon diamondQsm = new ImageIcon("DiamondQsm.png");
+    ImageIcon diamondKsm = new ImageIcon("DiamondKsm.png");
+    ImageIcon clubAsm = new ImageIcon("ClubAsm.png");
+    ImageIcon club2sm = new ImageIcon("Club2sm.png");
+    ImageIcon club3sm = new ImageIcon("Club3sm.png");
+    ImageIcon club4sm = new ImageIcon("Club4sm.png");
+    ImageIcon club5sm = new ImageIcon("Club5sm.png");
+    ImageIcon club6sm = new ImageIcon("Club6sm.png");
+    ImageIcon club7sm = new ImageIcon("Club7sm.png");
+    ImageIcon club8sm = new ImageIcon("Club8sm.png");
+    ImageIcon club9sm = new ImageIcon("Club9sm.png");
+    ImageIcon club10sm = new ImageIcon("Club10sm.png");
+    ImageIcon clubJsm = new ImageIcon("ClubJsm.png");
+    ImageIcon clubQsm = new ImageIcon("ClubQsm.png");
+    ImageIcon clubKsm = new ImageIcon("ClubKsm.png");
+    ImageIcon heartAsm = new ImageIcon("HeartAsm.png");
+    ImageIcon heart2sm = new ImageIcon("Heart2sm.png");
+    ImageIcon heart3sm = new ImageIcon("Heart3sm.png");
+    ImageIcon heart4sm = new ImageIcon("Heart4sm.png");
+    ImageIcon heart5sm = new ImageIcon("Heart5sm.png");
+    ImageIcon heart6sm = new ImageIcon("Heart6sm.png");
+    ImageIcon heart7sm = new ImageIcon("Heart7sm.png");
+    ImageIcon heart8sm = new ImageIcon("Heart8sm.png");
+    ImageIcon heart9sm = new ImageIcon("Heart9sm.png");
+    ImageIcon heart10sm = new ImageIcon("Heart10sm.png");
+    ImageIcon heartJsm = new ImageIcon("HeartJsm.png");
+    ImageIcon heartQsm = new ImageIcon("HeartQsm.png");
+    ImageIcon heartKsm = new ImageIcon("HeartKsm.png");
+    
 
     // Constructor
     public Deck() { //-------------------------------------------------------------------------------------------------------
@@ -312,7 +363,230 @@ public class Deck { //----------------------------------------------------------
         return card;
         
         
-     }
+
+      }
+
+
+      public ImageIcon getIconSm(int cardNum){ //--------------------------------------------------------------------------------
+      
+         ImageIcon card = spadeA;
+         
+         switch (cardNum) {
+               case 0:
+                 System.out.println("SpadeA");
+                 card = spadeAsm; 
+                 break;
+               case 1:
+                 System.out.println("Spade2");
+                  card = spade2sm;
+                 break;
+               case 2:
+                 System.out.println("Spade3");
+                  card = spade3sm;
+                 break;
+               case 3:
+                 System.out.println("Spade4");
+                  card = spade4sm;
+                 break;
+               case 4:
+                 System.out.println("Spade5");
+                  card = spade5sm;
+                 break;
+               case 5:
+                 System.out.println("Spade6");
+                  card = spade6sm;
+                 break;
+               case 6:
+                 System.out.println("Spade7");
+                  card = spade7sm;
+                 break;
+               case 7:
+                 System.out.println("Spade8");
+                  card = spade8sm;
+                 break;
+               case 8:
+                  System.out.println("Spade9");
+                  card = spade9sm;
+               break;
+               case 9:
+                  System.out.println("Spade10");
+                  card = spade10sm;
+               break;
+               case 10:
+                  System.out.println("SpadeJ");
+                  card = spadeJsm;
+               break;
+               case 11:
+                  System.out.println("SpadeQ");
+                  card = spadeQsm;
+               break;
+               case 12:
+                  System.out.println("SpadeK");
+                  card = spadeKsm;
+               break;
+               case 13:
+                  System.out.println("DiamondA");
+                  card = diamondAsm; 
+               break;
+               case 14:
+                  System.out.println("Diamond2");
+                  card = diamond2sm;
+               break;
+               case 15:
+                  System.out.println("Diamond3");
+                  card = diamond3sm;
+               break;
+               case 16:
+                  System.out.println("Diamond4");
+                  card = diamond4sm;
+               break;
+               case 17:
+                  System.out.println("Diamond5");
+                  card = diamond5sm;
+               break;
+               case 18:
+                  System.out.println("Diamond6");
+                  card = diamond6sm;
+               break;
+               case 19:
+                  System.out.println("Diamond7");
+                  card = diamond7sm;
+               break;
+               case 20:
+                  System.out.println("Diamond8");
+                  card = diamond8sm;
+               break;
+               case 21:
+                  System.out.println("Diamond9");
+                  card = diamond9sm;
+               break;
+               case 22:
+                  System.out.println("Diamond10");
+                  card = diamond10sm;
+               break;
+               case 23:
+                  System.out.println("DiamondJ");
+                  card = diamondJsm;
+               break;
+               case 24:
+                  System.out.println("DiamondQ");
+                  card = diamondQsm;
+               break;
+               case 25:
+                  System.out.println("DiamondK");
+                  card = diamondKsm;
+               break;
+               case 26:
+                  System.out.println("ClubA");
+                  card = clubAsm; 
+               break;
+               case 27:
+                  System.out.println("Club2");
+                  card = club2sm;
+               break;
+               case 28:
+                  System.out.println("Club3");
+                  card = club3sm;
+               break;
+               case 29:
+                  System.out.println("Club4");
+                  card = club4sm;
+               break;
+               case 30:
+                  System.out.println("Club5");
+                  card = club5sm;
+               break;
+               case 31:
+                  System.out.println("Club6");
+                  card = club6sm;
+               break;
+               case 32:
+                  System.out.println("Club7");
+                  card = club7sm;
+               break;
+               case 33:
+                  System.out.println("Club8");
+                  card = club8sm;
+               break;
+               case 34:
+                  System.out.println("Club9");
+                  card = club9sm;
+               break;
+               case 35:
+                  System.out.println("Club10");
+                  card = club10sm;
+               break;
+               case 36:
+                  System.out.println("ClubJ");
+                  card = clubJsm;
+               break;
+               case 37:
+                  System.out.println("ClubQ");
+                  card = clubQsm;
+               break;
+               case 38:
+                  System.out.println("ClubK");
+                  card = clubKsm;
+               break;
+               case 39:
+                  System.out.println("HeartA");
+                  card = heartAsm; 
+               break;
+               case 40:
+                  System.out.println("Heart2");
+                  card = heart2sm;
+               break;
+               case 41:
+                  System.out.println("Heart3");
+                  card = heart3sm;
+               break;
+               case 42:
+                  System.out.println("Heart4");
+                  card = heart4sm;
+               break;
+               case 43:
+                  System.out.println("Heart5");
+                  card = heart5sm;
+               break;
+               case 44:
+                  System.out.println("Heart6");
+                  card = heart6sm;
+               break;
+               case 45:
+                  System.out.println("Heart7");
+                  card = heart7sm;
+               break;
+               case 46:
+                  System.out.println("Heart8");
+                  card = heart8sm;
+               break;
+               case 47:
+                  System.out.println("Heart9");
+                  card = heart9sm;
+               break;
+               case 48:
+                  System.out.println("Heart10");
+                  card = heart10sm;
+               break;
+               case 49:
+                  System.out.println("HeartJ");
+                  card = heartJsm;
+               break;
+               case 50:
+                  System.out.println("HeartQ");
+                  card = heartQsm;
+               break;
+               case 51:
+                  System.out.println("HeartK");
+                  card = heartKsm;
+               break;
+         }
+         
+         return card;
+         
+         
+      }
+ 
 
 
 

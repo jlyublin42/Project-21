@@ -44,6 +44,10 @@ public class OnePlayerGame extends JPanel { //----------------------------------
    int plyrCardValue = 0;
    int dlrCardValue = 0;
    Card dlrFirstCard;
+   int numHands = 0;
+   int numWins = 0;
+   int numTies = 0;
+   int numLosses = 0;
    
    // Constructor
    public OnePlayerGame(GameFrame parent) { //--------------------------------------------------------------------------------
@@ -235,6 +239,7 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       this.add(buttonPanel);
       this.add(buttonPanel2);
       this.add(infoPanel);
+      
 
 
       // Initialize Deck and Hands
@@ -321,19 +326,23 @@ public class OnePlayerGame extends JPanel { //----------------------------------
                count++;
                if (i == 0 || i == 2){
                   playerOneHand.addCard(deck.drawCard(i));
-                  plyrCardValue += cardIdx.getValue();
+                  plyrCardValue = playerOneHand.getTotalValue();
                   System.out.println(plyrCardValue);
                   if (plyrCardValue == 21){
                      hitButton.setEnabled(false);
                   }
                }else {
                   dealerHand.addCard(deck.drawCard(i));
-                  dlrCardValue += cardIdx.getValue();
+                  dlrCardValue = dealerHand.getTotalValue();
                   System.out.println(dlrCardValue);
                }
             } 
             dealButton.setEnabled(false);
             info.setText("You have " + plyrCardValue + " Press HIT or Press STAY");
+
+            if (numHands == 0){
+               numHands++;
+            }
 
          }
 
@@ -410,6 +419,7 @@ public class OnePlayerGame extends JPanel { //----------------------------------
             count = 0;
             plyrCardValue = 0;
             dlrCardValue = 0;
+            numHands++;
 
             playerOneHand.clearHand();
             dealerHand.clearHand();
@@ -421,10 +431,6 @@ public class OnePlayerGame extends JPanel { //----------------------------------
 
             deck.shuffle();
 
-            
-
-
-
          }
          
       });
@@ -434,6 +440,7 @@ public class OnePlayerGame extends JPanel { //----------------------------------
          
          public void actionPerformed(ActionEvent e) {
             
+            parent.walkAwayPanel.updateData();
             parent.walkAwayPanel.setVisible(true);
             
          }
@@ -445,9 +452,11 @@ public class OnePlayerGame extends JPanel { //----------------------------------
 
 
    public void setPlayerOneName(String name){ //--------------------------------------------------------------------------------------------------
-
       playerOneName.setText(name);
+   }
 
+   public void setBankRoll(int num){ //-----------------------------------------------------------------------------------------------------------
+      bankRoll.setText("$ " + num);
    }
 
    public void setBankRoll(){ //------------------------------------------------------------------------------------------------------------------
@@ -475,22 +484,28 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       if (playerTotal > 21) {
          info.setText("You busted! Dealer wins.");
          System.out.println("You busted! Dealer wins.");
+         numLosses++;
       } else if (dealerTotal > 21) {
          info.setText("Dealer busted! You win.");
          System.out.println("Dealer busted! You win.");
+         numWins++;
       } else if (playerTotal > dealerTotal) {
          info.setText("You win with " + playerTotal + " against " + dealerTotal + "!");
          System.out.println("You win with " + playerTotal + " against " + dealerTotal + "!");
+         numWins++;
       } else if (playerTotal < dealerTotal) {
          info.setText("Dealer wins with " + dealerTotal + " against " + playerTotal + ".");
          System.out.println("Dealer wins with " + dealerTotal + " against " + playerTotal + ".");
+         numLosses++;
       } else {
          info.setText("It's a tie!");
          System.out.println("It's a tie!");
+         numTies++;
       }
 
    
       settleBets();
+      System.out.println(numHands + " " + numWins);
 
    }
 
@@ -544,6 +559,74 @@ public class OnePlayerGame extends JPanel { //----------------------------------
 
    }
 
+   public void newRound(){ //-----------------------------------------------------------------------------------------------------------------
+
+      minus.setEnabled(true);
+      plus.setEnabled(true);
+      placeBet.setVisible(true);
+      allIn.setVisible(true);
+      hitButton.setEnabled(false);
+      stayButton.setEnabled(false);
+      info.setText("Press PLACE BET to place your bet for this hand");
+
+      for (int i = 0; i < 10; i++){
+               cards[i].setIcon(null);
+      }
+
+      count = 0;
+      plyrCardValue = 0;
+      dlrCardValue = 0;
+      numHands = 0;
+      numWins = 0;
+      numTies = 0;
+      numLosses = 0;
+
+      playerOneHand.clearHand();
+      dealerHand.clearHand();
+
+      bank = 500;
+      setBankRoll(500);
+      bet = 25;
+      betNumLabel.setText("$ " + bet);
+      
+
+      deck.shuffle();
+     
+
+   }
+
+
+   public int getNumHands(){ //----------------------------------------------------------------------------------------------------------------
+      return numHands;
+   }
+
+   public void setNumHands(int num){ //--------------------------------------------------------------------------------------------------------
+      numHands = num;
+   }
+
+   public int getNumWins(){ //-----------------------------------------------------------------------------------------------------------------
+      return numWins;
+   }
+
+   public void setNumWins(int num){ //---------------------------------------------------------------------------------------------------------
+      numWins = num;
+   }
+
+   public int getNumTies(){ //------------------------------------------------------------------------------------------------------------------
+      return numTies;
+   }
+
+   public void setNumTies(int num){ //----------------------------------------------------------------------------------------------------------
+      numTies = num;
+   }
+
+   public int getNumLosses(){ //----------------------------------------------------------------------------------------------------------------
+      return numLosses;
+   }
+
+   public void setNumLosses(int num){ //--------------------------------------------------------------------------------------------------------
+      numLosses = num;
+   }
 
 
    

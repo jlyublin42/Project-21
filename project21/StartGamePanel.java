@@ -151,19 +151,6 @@ public class StartGamePanel extends JPanel { //---------------------------------
             
          } 
       });
-      /* 
-      playerOneName.addActionListener(new ActionListener() {
-         
-         public void actionPerformed(ActionEvent e) {
-            
-            int caretPosition = playerOneName.getCaretPosition();
-            String currentText = playerOneName.getText();
-            playerOneName.requestFocus();
-            playerOneName.setCaretPosition(caretPosition + currentText.length());
-            onePlayer.setSelected(true);
-                   
-         } 
-      }); */
 
       twoPlayer.addActionListener(new ActionListener() {
          
@@ -212,6 +199,7 @@ public class StartGamePanel extends JPanel { //---------------------------------
             } else if (twoPlayer.isSelected()){
                parent.twoPlayerGame.setPlayerOneName(getPlayerOneName());
                parent.twoPlayerGame.setPlayerTwoName(getPlayerTwoName());
+               parent.twoPlayerGame.setPlayerTwoUser(getPlayerTwoComboBox());
                parent.selectGame(2);
             } else if (threePlayer.isSelected()){
                parent.threePlayerGame.setPlayerOneName(getPlayerOneName());
@@ -254,7 +242,14 @@ public class StartGamePanel extends JPanel { //---------------------------------
       return playerThreeName.getText();
    }
    
-   public String getPlayerThreeComboBox(){
+   public String getPlayerTwoComboBox(){ //-------------------------------------------------------------------
+      int num = twoPlayerCB.getSelectedIndex();
+      System.out.println(num);
+      
+      return twoPlayerCB.getSelectedItem().toString();
+   }
+
+   public String getPlayerThreeComboBox(){ //-----------------------------------------------------------------
       int num = threePlayerCB.getSelectedIndex();
       System.out.println(num);
       

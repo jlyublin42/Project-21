@@ -55,37 +55,37 @@ public class WalkAwayPanel extends JPanel { //----------------------------------
       name.setBounds(10, 10, 170, 20);
       name.setFont(font2);
       name.setBackground(Color.darkGray);
-      name.setForeground(Color.black);
+      name.setForeground(Color.white);
 
       endBank = new JLabel("Bank: $");
       endBank.setBounds(200, 10, 170, 20);
       endBank.setFont(font2);
       endBank.setBackground(Color.darkGray);
-      endBank.setForeground(Color.black);
+      endBank.setForeground(Color.white);
 
       numHandsLbl = new JLabel("Number of Hands: ");
       numHandsLbl.setBounds(10, 40, 170, 20);
       numHandsLbl.setFont(font2);
       numHandsLbl.setBackground(Color.darkGray);
-      numHandsLbl.setForeground(Color.black);
+      numHandsLbl.setForeground(Color.white);
 
       numWinsLbl = new JLabel("Number of Wins: ");
       numWinsLbl.setBounds(200, 40, 170, 20);
       numWinsLbl.setFont(font2);
       numWinsLbl.setBackground(Color.darkGray);
-      numWinsLbl.setForeground(Color.black);
+      numWinsLbl.setForeground(Color.white);
 
       numTiesLbl = new JLabel("Number of Ties: ");
       numTiesLbl.setBounds(10, 70, 170, 20);
       numTiesLbl.setFont(font2);
       numTiesLbl.setBackground(Color.darkGray);
-      numTiesLbl.setForeground(Color.black);
+      numTiesLbl.setForeground(Color.white);
 
       numLossesLbl = new JLabel("Number of Losses: "); 
       numLossesLbl.setBounds(200, 70, 170, 20);
       numLossesLbl.setFont(font2);
       numLossesLbl.setBackground(Color.darkGray);
-      numLossesLbl.setForeground(Color.black);
+      numLossesLbl.setForeground(Color.white);
 
       // Add Labels to labelPanel
       labelPanel.add(name);

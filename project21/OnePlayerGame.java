@@ -220,7 +220,7 @@ public class OnePlayerGame extends JPanel { //----------------------------------
       infoPanel.setBorder(BorderFactory.createLoweredBevelBorder());
        
       info = new JTextField("Press PLACE BET to place your bet for this hand");
-      info.setBounds(1000, 0, 585, 40);
+      info.setBounds(0, 0, 1585, 40);
       info.setBorder(BorderFactory.createLoweredBevelBorder());
       info.setBackground(Color.darkGray);
       info.setForeground(Color.white);
@@ -340,9 +340,9 @@ public class OnePlayerGame extends JPanel { //----------------------------------
             dealButton.setEnabled(false);
             info.setText("You have " + plyrCardValue + " Press HIT or Press STAY");
 
-            if (numHands == 0){
-               numHands++;
-            }
+           
+            numHands++;
+            
 
          }
 
@@ -419,7 +419,6 @@ public class OnePlayerGame extends JPanel { //----------------------------------
             count = 0;
             plyrCardValue = 0;
             dlrCardValue = 0;
-            numHands++;
 
             playerOneHand.clearHand();
             dealerHand.clearHand();

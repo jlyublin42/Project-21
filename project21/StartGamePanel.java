@@ -53,7 +53,6 @@ public class StartGamePanel extends JPanel { //---------------------------------
       String currentText = playerOneName.getText();
       playerOneName.requestFocus();
       playerOneName.setCaretPosition(caretPosition + currentText.length());
-      //playerOneName.setEditable(false);
       
       twoPlayer = new JRadioButton();
       twoPlayer.setBounds(240, 380, 20, 20);
@@ -82,11 +81,9 @@ public class StartGamePanel extends JPanel { //---------------------------------
       bg.add(twoPlayer);
       bg.add(threePlayer);
 
-      // Disable Two and Three player games
-      //twoPlayer.setEnabled(false);
-      //playerTwoName.setEditable(false);
-      //threePlayer.setEnabled(false);
-      //playerThreeName.setEditable(false);
+      // Disable The Three player game -- it's not ready
+      twoPlayer.setEnabled(false);
+      threePlayer.setEnabled(false);
 
       
       
@@ -155,7 +152,8 @@ public class StartGamePanel extends JPanel { //---------------------------------
       twoPlayer.addActionListener(new ActionListener() {
          
          public void actionPerformed(ActionEvent e) {
-        
+
+            
             playerOneName.setEditable(true);
             playerTwoName.setEditable(true);
             playerThreeName.setEditable(false);
@@ -197,9 +195,15 @@ public class StartGamePanel extends JPanel { //---------------------------------
                parent.onePlayerGame.setPlayerOneName(getPlayerOneName()); // Passes Name into OnePlayerGame
                parent.selectGame(1);
             } else if (twoPlayer.isSelected()){
-               parent.twoPlayerGame.setPlayerOneName(getPlayerOneName());
-               parent.twoPlayerGame.setPlayerTwoName(getPlayerTwoName());
-               parent.twoPlayerGame.setPlayerTwoUser(getPlayerTwoComboBox());
+               if (getPlayerTwoComboBox() .equals("User")) {
+                  parent.twoPlayerGame.userInit();
+                  parent.twoPlayerGame.setPlayerOneName(getPlayerOneName());
+                  parent.twoPlayerGame.setPlayerTwoName(getPlayerTwoName());
+               } else {
+                  parent.twoPlayerGame.aiInit();
+                  parent.twoPlayerGame.setPlayerOneName(getPlayerOneName());
+                  parent.twoPlayerGame.setPlayerTwoName("AI - " + getPlayerTwoName());
+               }
                parent.selectGame(2);
             } else if (threePlayer.isSelected()){
                parent.threePlayerGame.setPlayerOneName(getPlayerOneName());
